@@ -6,13 +6,13 @@ from collections.abc import Iterable, Mapping
 from pathlib import Path
 from typing import Any, TextIO
 
-from open_places_manticore.documents import build_search_document
-from open_places_manticore.manticore import serialize_tsv_row
-from open_places_manticore.models import NormalizedPlace, PlaceType, Provider, SourceRecord
-from open_places_manticore.normalization import canonical_key, normalize_text
-from open_places_manticore.normalization import phone_key as normalized_phone_key
-from open_places_manticore.normalization import website_host as normalized_website_host
-from open_places_manticore.taxonomy import category_ids, type_compatible
+from open_place_search.documents import build_search_document
+from open_place_search.manticore import serialize_tsv_row
+from open_place_search.models import NormalizedPlace, PlaceType, Provider, SourceRecord
+from open_place_search.normalization import canonical_key, normalize_text
+from open_place_search.normalization import phone_key as normalized_phone_key
+from open_place_search.normalization import website_host as normalized_website_host
+from open_place_search.taxonomy import category_ids, type_compatible
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SCHEMA_PATH = PACKAGE_ROOT / "sql" / "postgres_schema.sql"

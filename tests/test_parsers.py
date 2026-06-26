@@ -1,5 +1,5 @@
-from open_places_manticore.models import PlaceType, Provider
-from open_places_manticore.parsers import (
+from open_place_search.models import PlaceType, Provider
+from open_place_search.parsers import (
     parse_geonames_row,
     parse_geojson_feature,
     parse_openstreetmap_element,

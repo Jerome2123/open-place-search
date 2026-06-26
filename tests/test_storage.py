@@ -1,5 +1,5 @@
-from open_places_manticore.models import PlaceType, Provider, SourceRecord
-from open_places_manticore.storage import choose_canonical_match, source_record_params
+from open_place_search.models import PlaceType, Provider, SourceRecord
+from open_place_search.storage import choose_canonical_match, source_record_params
 
 
 def _record(**overrides: object) -> SourceRecord:

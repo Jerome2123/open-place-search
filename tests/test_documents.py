@@ -1,5 +1,5 @@
-from open_places_manticore.documents import build_search_document, category_ids_for_record
-from open_places_manticore.models import NormalizedPlace, PlaceType, Provider
+from open_place_search.documents import build_search_document, category_ids_for_record
+from open_place_search.models import NormalizedPlace, PlaceType, Provider
 
 
 def test_build_search_document_combines_terms_without_rich_payloads() -> None:

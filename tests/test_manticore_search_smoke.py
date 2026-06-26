@@ -4,9 +4,9 @@ from pathlib import Path
 import httpx
 import psycopg
 
-from open_places_manticore.manticore import load_tsv
-from open_places_manticore.parsers import iter_source_records
-from open_places_manticore.storage import (
+from open_place_search.manticore import load_tsv
+from open_place_search.parsers import iter_source_records
+from open_place_search.storage import (
     build_search_documents,
     export_search_documents_tsv,
     ingest_records,

@@ -1,4 +1,4 @@
-from open_places_manticore.manticore import (
+from open_place_search.manticore import (
     build_bulk_payload,
     document_from_tsv_values,
     serialize_tsv_row,

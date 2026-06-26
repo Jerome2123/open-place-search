@@ -3,8 +3,8 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping
 from typing import Any
 
-from open_places_manticore.models import NormalizedPlace, PlaceType
-from open_places_manticore.taxonomy import category_ids, category_text
+from open_place_search.models import NormalizedPlace, PlaceType
+from open_place_search.taxonomy import category_ids, category_text
 
 
 def _text_join(values: Iterable[str]) -> str:
@@ -104,7 +104,7 @@ def build_search_document_from_row(row: Mapping[str, Any]) -> dict[str, object]:
         normalized_name=str(row.get("normalized_name") or ""),
         place_type=PlaceType(type_value),
         subtype=str(row.get("subtype") or "") or None,
-        provider=__import__("open_places_manticore.models", fromlist=["Provider"]).Provider(
+        provider=__import__("open_place_search.models", fromlist=["Provider"]).Provider(
             provider_value
         ),
         country_code=str(row.get("country_code") or "") or None,

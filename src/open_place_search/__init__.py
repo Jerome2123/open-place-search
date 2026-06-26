@@ -1,6 +1,6 @@
 """Open-data place ingestion and Manticore indexing library."""
 
-from open_places_manticore.models import NormalizedPlace, PlaceType, Provider, SourceRecord
+from open_place_search.models import NormalizedPlace, PlaceType, Provider, SourceRecord
 
 __all__ = ["NormalizedPlace", "PlaceType", "Provider", "SourceRecord"]
 

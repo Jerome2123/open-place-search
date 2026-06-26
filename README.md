@@ -1,11 +1,10 @@
-# Open Places Manticore
+# Open Place Search
 
 Local, library-first tooling for public place ingestion, canonical dedupe, compact
 Postgres search documents, and `poi_v1` Manticore indexing.
 
-This project is a standalone version of Traveller's current open-data place flow. It is
-not an API server and it does not include private ranking models or paid-provider
-adapters.
+This project is not an API server and it does not include private ranking models or
+paid-provider adapters.
 
 ## Current Flow
 
@@ -15,7 +14,7 @@ adapters.
    - shared strong external IDs: `qid`, `geonames`, `osm`, `fsq`
    - matching website or phone keys
    - matching normalized name within a type-specific coordinate radius
-4. Build `poi_search_documents` with Traveller-style `poi_v1` fields:
+4. Build `poi_search_documents` with `poi_v1` fields:
    - `trusted_aliases`, `code_aliases`, `weak_aliases`
    - `scope_ids` and `primary_scope_id`
    - searchability flags and quality/popularity scores
@@ -78,17 +77,17 @@ Manticore: http://127.0.0.1:9308
 ## CLI Workflow
 
 ```bash
-open-places init-db --database-url postgresql://open_places:open_places@localhost:5432/open_places
+place-search init-db --database-url postgresql://open_places:open_places@localhost:5432/open_places
 
-open-places ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source geonames --path tests/fixtures/geonames.tsv --country-code AU
-open-places ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source wikidata --path tests/fixtures/wikidata.jsonl --country-code AU
-open-places ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source openstreetmap --path tests/fixtures/openstreetmap.jsonl --country-code AU
-open-places ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source overture --path tests/fixtures/overture.jsonl --country-code AU
-open-places ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source open_data_geojson --path tests/fixtures/open_data_geojson.json --country-code AU
+place-search ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source geonames --path tests/fixtures/geonames.tsv --country-code AU
+place-search ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source wikidata --path tests/fixtures/wikidata.jsonl --country-code AU
+place-search ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source openstreetmap --path tests/fixtures/openstreetmap.jsonl --country-code AU
+place-search ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source overture --path tests/fixtures/overture.jsonl --country-code AU
+place-search ingest --database-url postgresql://open_places:open_places@localhost:5432/open_places --source open_data_geojson --path tests/fixtures/open_data_geojson.json --country-code AU
 
-open-places build-documents --database-url postgresql://open_places:open_places@localhost:5432/open_places
-open-places export-tsv --database-url postgresql://open_places:open_places@localhost:5432/open_places --out poi_v1.tsv
-open-places load-manticore --host 127.0.0.1 --tsv poi_v1.tsv
+place-search build-documents --database-url postgresql://open_places:open_places@localhost:5432/open_places
+place-search export-tsv --database-url postgresql://open_places:open_places@localhost:5432/open_places --out poi_v1.tsv
+place-search load-manticore --host 127.0.0.1 --tsv poi_v1.tsv
 ```
 
 Search smoke:
@@ -103,8 +102,8 @@ curl -X POST "http://127.0.0.1:9308/sql?mode=raw" ^
 ```python
 import psycopg
 
-from open_places_manticore.parsers import iter_source_records
-from open_places_manticore.storage import init_db, ingest_records, build_search_documents
+from open_place_search.parsers import iter_source_records
+from open_place_search.storage import init_db, ingest_records, build_search_documents
 
 with psycopg.connect("postgresql://open_places:open_places@localhost:5432/open_places") as conn:
     init_db(conn)

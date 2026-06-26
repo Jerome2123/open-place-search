@@ -3,13 +3,13 @@ requires = ["hatchling>=1.25"]
 build-backend = "hatchling.build"
 
 [project]
-name = "open-places-manticore"
+name = "open-place-search"
 version = "0.1.0"
 description = "Open-data place ingestion, normalization, and Manticore search indexing"
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
-authors = [{ name = "Open Places contributors" }]
+authors = [{ name = "Open Place Search contributors" }]
 dependencies = [
   "httpx>=0.27",
   "psycopg[binary]>=3.2",
@@ -21,10 +21,10 @@ osm = ["osmium>=4.0"]
 dev = ["pytest>=8.0", "ruff>=0.6"]
 
 [project.scripts]
-open-places = "open_places_manticore.cli:main"
+place-search = "open_place_search.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/open_places_manticore"]
+packages = ["src/open_place_search"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -33,4 +33,3 @@ pythonpath = ["src"]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
-

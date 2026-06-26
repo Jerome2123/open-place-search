@@ -1,4 +1,4 @@
-from open_places_manticore.cli import build_parser
+from open_place_search.cli import build_parser
 
 
 def test_cli_exposes_library_workflow_commands() -> None:

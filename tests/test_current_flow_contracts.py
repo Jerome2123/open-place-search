@@ -1,6 +1,6 @@
-from open_places_manticore.documents import build_search_document
-from open_places_manticore.models import NormalizedPlace, PlaceType, Provider
-from open_places_manticore.parsers import (
+from open_place_search.documents import build_search_document
+from open_place_search.models import NormalizedPlace, PlaceType, Provider
+from open_place_search.parsers import (
     parse_geonames_row,
     parse_openstreetmap_element,
     parse_overture_row,

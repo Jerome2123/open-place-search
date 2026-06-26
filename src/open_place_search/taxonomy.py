@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 
-from open_places_manticore.models import PlaceType
+from open_place_search.models import PlaceType
 
 _CATEGORY_TOKEN_PATTERN = re.compile(r"[^a-z0-9]+")
 

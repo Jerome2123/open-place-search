@@ -4,7 +4,7 @@ import enum
 from dataclasses import dataclass, field
 from typing import Any
 
-from open_places_manticore.normalization import normalize_text, phone_key, website_host
+from open_place_search.normalization import normalize_text, phone_key, website_host
 
 
 class Provider(enum.StrEnum):

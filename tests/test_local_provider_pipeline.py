@@ -2,8 +2,8 @@ from pathlib import Path
 
 import psycopg
 
-from open_places_manticore.parsers import iter_source_records
-from open_places_manticore.storage import build_search_documents, ingest_records, init_db
+from open_place_search.parsers import iter_source_records
+from open_place_search.storage import build_search_documents, ingest_records, init_db
 
 DATABASE_URL = "postgresql://open_places:open_places@localhost:5432/open_places"
 FIXTURES = Path(__file__).parent / "fixtures"

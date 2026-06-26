@@ -11,9 +11,9 @@ from collections.abc import Iterator
 from pathlib import Path
 from typing import Any
 
-from open_places_manticore.models import Provider, SourceRecord
-from open_places_manticore.normalization import dedupe_text
-from open_places_manticore.taxonomy import choose_subtype, place_type_from_subtype
+from open_place_search.models import Provider, SourceRecord
+from open_place_search.normalization import dedupe_text
+from open_place_search.taxonomy import choose_subtype, place_type_from_subtype
 
 GEONAMES_COLUMNS = [
     "geonameid",

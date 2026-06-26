@@ -7,9 +7,9 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from open_places_manticore import manticore
-from open_places_manticore.parsers import iter_source_records
-from open_places_manticore.storage import (
+from open_place_search import manticore
+from open_place_search.parsers import iter_source_records
+from open_place_search.storage import (
     build_search_documents,
     export_search_documents_tsv,
     ingest_records,
@@ -19,7 +19,7 @@ from open_places_manticore.storage import (
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="open-places",
+        prog="place-search",
         description="Ingest public place data, normalize it in Postgres, and index it in Manticore.",
     )
     subcommands = parser.add_subparsers(dest="command", required=True)
