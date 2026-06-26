@@ -21,6 +21,46 @@ paid-provider adapters.
 5. Export TSV and bulk load Manticore `poi_v1`.
 6. Query Manticore with scoped lexical/category search.
 
+## Why Not OpenSearch or Elasticsearch?
+
+OpenSearch and Elasticsearch are excellent general-purpose search platforms, but
+they can be overkill for a focused global POI search index. A 100GB+ worldwide POI
+dataset usually means planning for replicas, memory headroom, disk watermarks,
+snapshots, monitoring, and multi-node operations. On managed search services,
+that operational footprint can become the largest cost in the project before the
+product has meaningful traffic.
+
+Open Place Search is designed for a narrower, cheaper path:
+
+- Keep canonical place data and durable search documents in Postgres.
+- Export compact TSV rows into a purpose-built Manticore full-text index.
+- Search inside explicit destination scopes instead of running every query across
+  the entire world.
+- Tune place ranking with simple, inspectable fields such as aliases, scope IDs,
+  popularity, quality tier, category text, and coordinates.
+- Run locally or on a small self-managed VM/container before graduating to a
+  larger managed cluster.
+
+This is useful when you need:
+
+- Destination-first place search: select a city/region/country, then find POIs
+  inside that scope.
+- Category browse for restaurants, attractions, hotels, venues, airports, and
+  generic points of interest.
+- A public-data ingestion pipeline that can merge GeoNames, OSM, Overture,
+  Wikidata, and custom GeoJSON records.
+- A low-cost search index for side projects, demos, internal tools, or early
+  products where managed OpenSearch/Elasticsearch would dominate infrastructure
+  spend.
+- Transparent ranking logic that can be debugged from Postgres rows and Manticore
+  documents.
+
+It is not a drop-in replacement for OpenSearch or Elasticsearch when you need
+large-scale log analytics, multi-tenant SaaS search, complex aggregations,
+managed snapshots, cross-cluster replication, vector-heavy workloads, or a mature
+hosted operations layer. The tradeoff is intentional: less platform surface area,
+less operational cost, and a search model shaped around global POI discovery.
+
 ## Supported Local Sources
 
 - `geonames`: official tab-delimited dump rows.
