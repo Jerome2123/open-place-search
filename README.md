@@ -61,6 +61,44 @@ managed snapshots, cross-cluster replication, vector-heavy workloads, or a matur
 hosted operations layer. The tradeoff is intentional: less platform surface area,
 less operational cost, and a search model shaped around global POI discovery.
 
+## How Is This Different from Nominatim?
+
+[Nominatim](https://nominatim.org/) is a geocoder for OpenStreetMap data. Its core
+job is finding locations by name or address and generating addresses from
+coordinates. It is the right tool when the primary question is "where is this
+address/place?" or "what address is at this lat/lon?"
+
+Open Place Search is a POI discovery index. Its core job is "inside this selected
+destination, which places match this query or category?" That difference changes
+the data model and ranking strategy:
+
+- Nominatim optimizes for geocoding and reverse geocoding. Open Place Search
+  optimizes for destination-scoped POI search and category browse.
+- Nominatim is OSM-first. Open Place Search can merge OSM with GeoNames,
+  Overture, Wikidata, and custom GeoJSON before building a canonical place index.
+- Nominatim can bias results with a `viewbox`, and `bounded=1` can turn the
+  viewbox into a hard filter. Open Place Search stores explicit scope IDs on each
+  search document, so a city/region/country selection becomes part of the index
+  contract rather than only a query-time geographic hint.
+- Nominatim special phrases can narrow result types, but the docs warn they are
+  not for returning complete object lists in an area. Open Place Search is built
+  for scoped candidate retrieval, ranking, and category browse over the indexed
+  POI documents you choose to load.
+- The public Nominatim service has strict usage limits and does not support
+  client-side autocomplete. Open Place Search is meant to be self-hosted and
+  adapted for typeahead-style product search.
+
+Use Nominatim when you need address lookup, reverse geocoding, OSM object lookup,
+or mature geocoder behavior. Use Open Place Search when you already know the
+destination context and need low-cost, inspectable POI search across a merged open
+data corpus.
+
+References:
+
+- [Nominatim search API](https://nominatim.org/release-docs/latest/api/Search/)
+- [Nominatim reverse geocoding](https://nominatim.org/release-docs/latest/api/Reverse/)
+- [Public Nominatim usage policy](https://operations.osmfoundation.org/policies/nominatim/)
+
 ## Supported Local Sources
 
 - `geonames`: official tab-delimited dump rows.
