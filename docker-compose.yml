@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: open_places
+      POSTGRES_PASSWORD: open_places
+      POSTGRES_DB: open_places
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  manticore:
+    image: manticoresearch/manticore:latest
+    ports:
+      - "9306:9306"
+      - "9308:9308"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - manticore_data:/var/lib/manticore
+
+volumes:
+  postgres_data:
+  manticore_data:
+

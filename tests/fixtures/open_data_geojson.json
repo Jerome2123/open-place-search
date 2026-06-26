@@ -1,0 +1,18 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source": "geojson",
+        "id": "fed-square",
+        "name": "Federation Square",
+        "categories": ["tourist_attraction", "event_venue"],
+        "aliases": ["Fed Square"],
+        "countryCode": "AU",
+        "confidence": 0.82
+      },
+      "geometry": {"type": "Point", "coordinates": [144.969, -37.8179]}
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+/.pytest_cache/
+/.ruff_cache/
+/dist/
+/build/
+/*.egg-info/
+__pycache__/
+*.py[cod]
+.env
+.venv/
+venv/
+*.tsv
+*.osm.pbf
+*.parquet
+*.dump
+
